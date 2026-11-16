@@ -44,9 +44,9 @@ The web app is being established incrementally. For Supabase setup, copy `apps/w
 
 ## Project status
 
-**Foundation stage — not production-ready.** Authentication, database migrations, payments, job workflows, notifications, moderation, and mobile release workflows remain to be implemented and tested.
+**Foundation stage — not production-ready.** Initial authentication screens and a database migration have been committed, but the Supabase project has not yet been connected and the migration has not yet been applied or verified. Job workflows, payments, notifications, moderation, and mobile release workflows remain pending.
 
-See [the roadmap](docs/ROADMAP.md), [project brief](docs/PROJECT.md), and [architecture](docs/ARCHITECTURE.md).
+See [the roadmap](docs/ROADMAP.md), [project brief](docs/PROJECT.md), [architecture](docs/ARCHITECTURE.md), and the [Supabase setup guide](docs/SUPABASE_SETUP.md).
 
 ## Security
 
