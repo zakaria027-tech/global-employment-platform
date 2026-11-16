@@ -50,7 +50,7 @@ drop policy if exists "Employers can create jobs for their organization" on publ
 drop policy if exists "Employers can update jobs for their organization" on public.jobs;
 drop policy if exists "Employers can delete jobs for their organization" on public.jobs;
 drop policy if exists "Candidates can view their own applications" on public.job_applications;
-drop policy if exists "Candidates can apply to published jobs" on public.jobs;
+drop policy if exists "Candidates can apply to published jobs" on public.job_applications;
 drop policy if exists "Candidates can withdraw their own applications" on public.job_applications;
 drop policy if exists "Employers can view applications to their jobs" on public.job_applications;
 drop policy if exists "Employers can update applications to their jobs" on public.job_applications;
