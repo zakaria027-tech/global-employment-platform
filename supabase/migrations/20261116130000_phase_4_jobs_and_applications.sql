@@ -49,6 +49,8 @@ drop policy if exists "Anyone can view published jobs" on public.jobs;
 drop policy if exists "Employers can create jobs for their organization" on public.jobs;
 drop policy if exists "Employers can update jobs for their organization" on public.jobs;
 drop policy if exists "Employers can delete jobs for their organization" on public.jobs;
+drop policy if exists "Candidates and employers can view permitted applications" on public.job_applications;
+drop policy if exists "Candidates and employers can update permitted applications" on public.job_applications;
 drop policy if exists "Candidates can view their own applications" on public.job_applications;
 drop policy if exists "Candidates can apply to published jobs" on public.job_applications;
 drop policy if exists "Candidates can withdraw their own applications" on public.job_applications;
