@@ -6,13 +6,13 @@ import { createClient } from "@/lib/supabase/server";
 
 export default async function AccountPage() {
   const supabase = await createClient();
-  const { data: { claims }, error } = await supabase.auth.getClaims();
-  if (error || !claims?.sub) redirect("/login");
+  const { data: claimsData, error } = await supabase.auth.getClaims();
+  if (error || !claimsData?.claims?.sub) redirect("/login");
 
   const { data: profile } = await supabase
     .from("profiles")
     .select("display_name, role, preferred_language")
-    .eq("id", claims.sub)
+    .eq("id", claimsData.claims.sub)
     .maybeSingle();
   if (!profile) redirect("/login?error=profile");
 
@@ -20,7 +20,7 @@ export default async function AccountPage() {
   const { data: candidate } = isCandidate
     ? await supabase.from("candidate_profiles")
         .select("headline, summary, city, skills, experience_years")
-        .eq("user_id", claims.sub).maybeSingle()
+        .eq("user_id", claimsData.claims.sub).maybeSingle()
     : { data: null };
 
   const { data: membership } = !isCandidate
