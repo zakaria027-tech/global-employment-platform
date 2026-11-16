@@ -40,7 +40,7 @@ pnpm install
 pnpm dev:web
 ```
 
-The web app is being established incrementally. Backend credentials are not required for the initial UI foundation.
+The web app is being established incrementally. For Supabase setup, copy `apps/web/.env.example` to `apps/web/.env.local` and add your project URL and publishable key. Never commit `.env.local`.
 
 ## Project status
 
