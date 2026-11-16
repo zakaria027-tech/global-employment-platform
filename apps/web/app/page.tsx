@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 const features = [
   { icon: "⌕", title: "Discover opportunities", description: "Explore job opportunities by role, location, workplace type, and compensation." },
   { icon: "◎", title: "Connect with employers", description: "Build your professional profile and apply to opportunities that match your skills." },
@@ -16,7 +14,7 @@ export default function HomePage() {
             <span>Global Employment</span>
           </Link>
           <nav className="nav-links" aria-label="Main navigation">
-            <a href="#opportunities">Find a job</a>
+            <a href="/jobs">Find a job</a>
             <a href="#employers">For employers</a>
             <a href="#how-it-works">How it works</a>
             <a href="/login">Sign in</a>
