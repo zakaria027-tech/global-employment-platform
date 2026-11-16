@@ -55,3 +55,25 @@ Never commit secrets, access tokens, private keys, production credentials, or re
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+
+## Phase 3 — Profiles and account workspaces
+
+The phase 3 branch adds:
+- Candidate profile editing (headline, summary, city, skills, experience).
+- Employer organization creation and editing.
+- Role-aware account workspace backed by the database profile, not client-provided role claims.
+- Server actions that verify the authenticated user and rely on database RLS.
+- Pending employer verification records created automatically for new organizations.
+- A GitHub Actions workflow for lint, TypeScript checks, and a production build.
+
+### Local web development
+
+1. Copy `apps/web/.env.example` to `apps/web/.env.local`.
+2. Add the Supabase project URL and publishable key.
+3. From the repository root run `pnpm install`.
+4. Run `pnpm dev:web` and open `http://localhost:3000`.
+
+Do not commit `.env.local`, database passwords, service-role keys, or secret API keys.
+
+This is still a development foundation. Live email confirmation, end-to-end browser tests, job publishing, applications, subscriptions, notifications, and production deployment remain outstanding.
