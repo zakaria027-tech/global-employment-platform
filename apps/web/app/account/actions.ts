@@ -59,6 +59,7 @@ export async function updateCandidateProfile(formData: FormData) {
   const { error: candidateError } = await supabase
     .from("candidate_profiles")
     .upsert({
+      user_id: userId,
       headline,
       summary,
       city: city || null,
