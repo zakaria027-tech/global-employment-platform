@@ -17,7 +17,8 @@ export default function HomePage() {
             <a href="#opportunities">Find a job</a>
             <a href="#employers">For employers</a>
             <a href="#how-it-works">How it works</a>
-            <a className="button button-secondary" href="#get-started">Get started</a>
+            <a href="/login">Sign in</a>
+            <a className="button button-secondary" href="/register">Create account</a>
           </nav>
         </div>
       </header>
@@ -28,8 +29,8 @@ export default function HomePage() {
             <h1>Find work that moves you forward.</h1>
             <p>A new place to discover opportunities, share your skills, and connect with employers across the world.</p>
             <div className="hero-actions" id="get-started">
-              <a className="button" href="#how-it-works">Explore the platform</a>
-              <a className="button button-secondary" href="#employers">I&apos;m hiring</a>
+              <a className="button" href="/register">Find a job</a>
+              <a className="button button-secondary" href="/register">I&apos;m hiring</a>
             </div>
           </div>
         </section>
