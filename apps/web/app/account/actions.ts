@@ -10,19 +10,19 @@ function value(formData: FormData, key: string) {
 
 async function getAuthenticatedProfile() {
   const supabase = await createClient();
-  const { data: { claims }, error } = await supabase.auth.getClaims();
+  const { data: claimsData, error } = await supabase.auth.getClaims();
 
-  if (error || !claims?.sub) redirect("/login");
+  if (error || !claimsData?.claims?.sub) redirect("/login");
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
     .select("id, role")
-    .eq("id", claims.sub)
+    .eq("id", claimsData.claims.sub)
     .single();
 
   if (profileError || !profile) redirect("/login?error=profile");
 
-  return { supabase, userId: claims.sub, role: profile.role };
+  return { supabase, userId: claimsData.claims.sub, role: profile.role };
 }
 
 export async function updateCandidateProfile(formData: FormData) {
