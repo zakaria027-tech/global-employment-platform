@@ -13,7 +13,7 @@ export default async function EmployerApplicationsPage() {
   if (!membership) redirect("/account?error=organization-required");
   const { data: jobs } = await supabase.from("jobs").select("id,title").eq("organization_id",membership.organization_id);
   const ids = (jobs ?? []).map(j=>j.id);
-  const { data: applications } = ids.length ? await supabase.from("job_applications").select("id,job_id,candidate_user_id,cover_letter,status,applied_at,profiles:candidate_user_id(display_name),candidate_profiles:candidate_user_id(headline,city,skills)").in("job_id",ids).order("applied_at",{ascending:false}) : {data:[]};
+  const { data: applications } = ids.length ? await supabase.from("job_applications").select("id,job_id,candidate_user_id,cover_letter,status,applied_at,profiles!job_applications_candidate_user_id_fkey(display_name),candidate_profiles!candidate_profiles_user_id_fkey(headline,city,skills)").in("job_id",ids).order("applied_at",{ascending:false}) : {data:[]};
   const titles = new Map((jobs ?? []).map(j=>[j.id,j.title]));
   return <main className="jobs-page"><header className="jobs-header"><Link href="/employer/jobs">← Your vacancies</Link><Link className="button button-secondary" href="/account">Account</Link></header><section className="job-results"><h1>Candidate applications</h1>
     {!applications?.length ? <div className="empty-state"><h3>No applications yet</h3><p>Applications for your published vacancies will appear here.</p></div> :
