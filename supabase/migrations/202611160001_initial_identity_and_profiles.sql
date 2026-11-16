@@ -275,3 +275,25 @@ comment on table public.profiles is 'Private account profile; role is immutable 
 comment on table public.candidate_profiles is 'Private candidate profile information.';
 comment on table public.organizations is 'Employer organization records; new organizations require review.';
 comment on table public.organization_members is 'Organization membership; writes are reserved for trusted workflows.';
+
+
+-- Restrict writable columns. In particular, clients cannot self-verify an
+-- organization, transfer ownership, or modify immutable account identifiers.
+revoke update on public.profiles from authenticated;
+grant update (display_name, country_code, preferred_language)
+  on public.profiles to authenticated;
+
+revoke insert, update on public.candidate_profiles from authenticated;
+grant insert (user_id, headline, summary, city, skills, experience_years)
+  on public.candidate_profiles to authenticated;
+grant update (headline, summary, city, skills, experience_years)
+  on public.candidate_profiles to authenticated;
+
+revoke insert, update on public.organizations from authenticated;
+grant insert (
+  owner_user_id, name, website_url, contact_email,
+  country_code, city, address, description
+) on public.organizations to authenticated;
+grant update (
+  name, website_url, contact_email, country_code, city, address, description
+) on public.organizations to authenticated;
