@@ -91,7 +91,7 @@ export async function applyToJob(formData: FormData) {
   const { error } = await supabase.from("job_applications").insert({
     job_id: jobId,
     candidate_user_id: userId,
-    cover_letter,
+    cover_letter: coverLetter,
   });
   if (error) redirect(`/jobs/${jobId}?error=${encodeURIComponent(error.code === "23505" ? "already-applied" : "application-failed")}`);
 
