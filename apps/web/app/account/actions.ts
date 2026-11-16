@@ -58,14 +58,13 @@ export async function updateCandidateProfile(formData: FormData) {
 
   const { error: candidateError } = await supabase
     .from("candidate_profiles")
-    .update({
+    .upsert({
       headline,
       summary,
       city: city || null,
       skills,
       experience_years: experience,
-    })
-    .eq("user_id", userId);
+    }, { onConflict: "user_id" });
 
   if (candidateError) redirect("/account?error=candidate-save");
 
