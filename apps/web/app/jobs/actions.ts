@@ -123,3 +123,37 @@ export async function updateApplicationStatus(formData: FormData) {
   revalidatePath("/employer/applications");
   redirect("/employer/applications?success=updated");
 }
+
+
+export async function withdrawApplication(formData: FormData) {
+  const { supabase, userId, role } = await authenticatedProfile();
+  if (role !== "candidate") redirect("/account?error=role");
+
+  const applicationId = field(formData, "application_id");
+  if (!applicationId) redirect("/account/applications?error=withdraw");
+
+  const { data: application, error: lookupError } = await supabase
+    .from("job_applications")
+    .select("id,job_id,status")
+    .eq("id", applicationId)
+    .eq("candidate_user_id", userId)
+    .maybeSingle();
+
+  if (lookupError || !application || !["submitted", "reviewing"].includes(application.status)) {
+    redirect("/account/applications?error=withdraw");
+  }
+
+  const { error } = await supabase
+    .from("job_applications")
+    .update({ status: "withdrawn", updated_at: new Date().toISOString() })
+    .eq("id", application.id)
+    .eq("candidate_user_id", userId)
+    .in("status", ["submitted", "reviewing"]);
+
+  if (error) redirect("/account/applications?error=withdraw");
+
+  revalidatePath("/account/applications");
+  revalidatePath("/employer/applications");
+  revalidatePath(`/jobs/${application.job_id}`);
+  redirect("/account/applications?success=withdrawn");
+}
