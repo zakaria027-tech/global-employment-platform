@@ -45,6 +45,19 @@ create index if not exists job_applications_job_idx on public.job_applications(j
 alter table public.jobs enable row level security;
 alter table public.job_applications enable row level security;
 
+drop policy if exists "Anyone can view published jobs" on public.jobs;
+drop policy if exists "Employers can create jobs for their organization" on public.jobs;
+drop policy if exists "Employers can update jobs for their organization" on public.jobs;
+drop policy if exists "Employers can delete jobs for their organization" on public.jobs;
+drop policy if exists "Candidates and employers can view permitted applications" on public.job_applications;
+drop policy if exists "Candidates and employers can update permitted applications" on public.job_applications;
+drop policy if exists "Candidates can view their own applications" on public.job_applications;
+drop policy if exists "Candidates can apply to published jobs" on public.job_applications;
+drop policy if exists "Candidates can withdraw their own applications" on public.job_applications;
+drop policy if exists "Employers can view applications to their jobs" on public.job_applications;
+drop policy if exists "Employers can update applications to their jobs" on public.job_applications;
+drop policy if exists "Members can read their verification status" on public.employer_verifications;
+
 create policy "Anyone can view published jobs" on public.jobs
 for select to anon, authenticated
 using (
