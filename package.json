@@ -1,10 +1,12 @@
 {
-  "name": "global-employment-platform",
+  "name": "midn-jobs",
   "version": "0.1.0",
   "private": true,
-  "description": "A global employment and recruitment platform",
+  "description": "Midn Jobs — a global employment and recruitment platform",
   "packageManager": "pnpm@10.0.0",
-  "engines": { "node": ">=20.0.0" },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev:web": "pnpm --filter @gep/web dev",
     "build:web": "pnpm --filter @gep/web build",

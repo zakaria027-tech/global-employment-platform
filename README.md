@@ -1,8 +1,7 @@
-# Global Employment Platform
+# Midn Jobs
 
-A global employment and recruitment platform connecting employers with job seekers through a multilingual web and mobile experience.
+Midn Jobs is a global employment and recruitment platform connecting employers with job seekers through a multilingual web and mobile experience.
 
-> Working repository name. The final product name and brand identity will be selected later.
 
 ## Product goals
 
