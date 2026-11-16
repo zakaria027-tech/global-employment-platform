@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const features = [
   { icon: "⌕", title: "Discover opportunities", description: "Explore job opportunities by role, location, workplace type, and compensation." },
   { icon: "◎", title: "Connect with employers", description: "Build your professional profile and apply to opportunities that match your skills." },
@@ -14,11 +16,11 @@ export default function HomePage() {
             <span>Global Employment</span>
           </Link>
           <nav className="nav-links" aria-label="Main navigation">
-            <a href="/jobs">Find a job</a>
+            <Link href="/jobs">Find a job</Link>
             <a href="#employers">For employers</a>
             <a href="#how-it-works">How it works</a>
-            <a href="/login">Sign in</a>
-            <a className="button button-secondary" href="/register">Create account</a>
+            <Link href="/login">Sign in</Link>
+            <Link className="button button-secondary" href="/register">Create account</Link>
           </nav>
         </div>
       </header>
@@ -30,7 +32,7 @@ export default function HomePage() {
             <p>A new place to discover opportunities, share your skills, and connect with employers across the world.</p>
             <div className="hero-actions" id="get-started">
               <a className="button" href="/register">Find a job</a>
-              <a className="button button-secondary" href="/register">I&apos;m hiring</a>
+              <Link className="button button-secondary" href="/register">I&apos;m hiring</Link>
             </div>
           </div>
         </section>
