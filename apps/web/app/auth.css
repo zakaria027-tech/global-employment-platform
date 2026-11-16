@@ -1,0 +1,37 @@
+.auth-page,.account-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 36px 18px;
+  background: radial-gradient(circle at 15% 10%, rgba(74,117,232,.12), transparent 28%), var(--background);
+}
+.auth-card,.account-card {
+  width: min(100%, 480px);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  padding: clamp(24px,5vw,40px);
+  background: white;
+  box-shadow: 0 18px 55px rgba(23,32,51,.07);
+}
+.auth-brand { display: inline-block; margin-bottom: 32px; color: var(--primary); font-weight: 800; }
+.auth-eyebrow { margin: 0 0 8px; color: var(--primary); font-size: 13px; font-weight: 700; }
+.auth-card h1,.account-card h1 { margin: 0 0 10px; font-size: 32px; letter-spacing: -.04em; }
+.auth-muted { margin: 0 0 24px; color: var(--muted); line-height: 1.65; }
+.role-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 22px 0; }
+.role-option { min-height: 48px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 12px; background: white; color: var(--muted); cursor: pointer; }
+.role-option.selected { border-color: var(--primary); background: var(--accent); color: var(--primary); font-weight: 700; }
+.auth-form { display: grid; gap: 10px; }
+.auth-form label { margin-top: 8px; font-size: 14px; font-weight: 700; }
+.auth-form input { width: 100%; min-height: 48px; border: 1px solid var(--border); border-radius: 11px; padding: 0 13px; color: var(--foreground); background: white; }
+.auth-form input:focus { border-color: var(--primary); outline: 3px solid #dce6ff; }
+.auth-hint { margin: 0; color: var(--muted); font-size: 12px; }
+.auth-submit { width: 100%; margin-top: 12px; }
+.auth-submit:disabled { opacity: .65; cursor: wait; }
+.auth-message { margin: 18px 0 0; border-radius: 10px; padding: 12px; background: #f1f5ff; color: #23438d; font-size: 14px; line-height: 1.5; overflow-wrap: anywhere; }
+.auth-switch { margin: 22px 0 0; color: var(--muted); text-align: center; font-size: 14px; }
+.auth-switch a { color: var(--primary); font-weight: 700; }
+.auth-legal { margin: 22px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; text-align: center; }
+.account-details { display: grid; gap: 12px; margin: 24px 0; }
+.account-details div { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+.account-details dt { color: var(--muted); }
+.account-details dd { margin: 0; font-weight: 700; text-transform: capitalize; }
