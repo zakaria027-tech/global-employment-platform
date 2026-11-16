@@ -99,3 +99,35 @@ using (exists (select 1 from public.jobs j join public.organization_members m on
   where j.id = job_applications.job_id and m.user_id = (select auth.uid()) and m.role in ('owner','admin','recruiter')))
 with check (exists (select 1 from public.jobs j join public.organization_members m on m.organization_id = j.organization_id
   where j.id = job_applications.job_id and m.user_id = (select auth.uid()) and m.role in ('owner','admin','recruiter')));
+
+-- Verification policy must bind the membership to this verification's organization.
+drop policy if exists "Members can read their verification status" on public.employer_verifications;
+create policy "Members can read their verification status" on public.employer_verifications
+for select to authenticated
+using (exists (select 1 from public.organization_members m where m.organization_id = employer_verifications.organization_id and m.user_id = (select auth.uid())));
+
+-- Index the job creator foreign key and combine overlapping application policies.
+create index if not exists jobs_created_by_idx on public.jobs(created_by);
+drop policy if exists "Candidates can view their own applications" on public.job_applications;
+drop policy if exists "Employers can view applications to their jobs" on public.job_applications;
+create policy "Candidates and employers can view permitted applications" on public.job_applications
+for select to authenticated
+using (
+ candidate_user_id = (select auth.uid())
+ or exists (select 1 from public.jobs j join public.organization_members m on m.organization_id=j.organization_id
+   where j.id=job_applications.job_id and m.user_id=(select auth.uid()) and m.role in ('owner','admin','recruiter'))
+);
+drop policy if exists "Candidates can withdraw their own applications" on public.job_applications;
+drop policy if exists "Employers can update applications to their jobs" on public.job_applications;
+create policy "Candidates and employers can update permitted applications" on public.job_applications
+for update to authenticated
+using (
+ (candidate_user_id=(select auth.uid()) and status in ('submitted','reviewing'))
+ or exists (select 1 from public.jobs j join public.organization_members m on m.organization_id=j.organization_id
+   where j.id=job_applications.job_id and m.user_id=(select auth.uid()) and m.role in ('owner','admin','recruiter'))
+)
+with check (
+ (candidate_user_id=(select auth.uid()) and status='withdrawn')
+ or exists (select 1 from public.jobs j join public.organization_members m on m.organization_id=j.organization_id
+   where j.id=job_applications.job_id and m.user_id=(select auth.uid()) and m.role in ('owner','admin','recruiter'))
+);
