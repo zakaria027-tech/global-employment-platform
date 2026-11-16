@@ -65,7 +65,7 @@ export default function RegisterPage() {
 
         {message && <p className="auth-message" role="status">{message}</p>}
         <p className="auth-switch">Already registered? <Link href="/login">Sign in</Link></p>
-        <p className="auth-legal">By creating an account, you agree to follow the platform's safety and acceptable-use rules.</p>
+        <p className="auth-legal">By creating an account, you agree to follow the platform&apos;s safety and acceptable-use rules.</p>
       </section>
     </main>
   );

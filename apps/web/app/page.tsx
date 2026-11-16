@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const features = [
   { icon: "⌕", title: "Discover opportunities", description: "Explore job opportunities by role, location, workplace type, and compensation." },
   { icon: "◎", title: "Connect with employers", description: "Build your professional profile and apply to opportunities that match your skills." },
@@ -9,15 +11,16 @@ export default function HomePage() {
     <>
       <header className="site-header">
         <div className="container header-inner">
-          <a className="brand" href="/" aria-label="Global Employment Platform home">
+          <Link className="brand" href="/" aria-label="Global Employment Platform home">
             <span className="brand-mark" aria-hidden="true">G</span>
             <span>Global Employment</span>
-          </a>
+          </Link>
           <nav className="nav-links" aria-label="Main navigation">
             <a href="#opportunities">Find a job</a>
             <a href="#employers">For employers</a>
             <a href="#how-it-works">How it works</a>
-            <a className="button button-secondary" href="#get-started">Get started</a>
+            <a href="/login">Sign in</a>
+            <a className="button button-secondary" href="/register">Create account</a>
           </nav>
         </div>
       </header>
@@ -28,8 +31,8 @@ export default function HomePage() {
             <h1>Find work that moves you forward.</h1>
             <p>A new place to discover opportunities, share your skills, and connect with employers across the world.</p>
             <div className="hero-actions" id="get-started">
-              <a className="button" href="#how-it-works">Explore the platform</a>
-              <a className="button button-secondary" href="#employers">I&apos;m hiring</a>
+              <a className="button" href="/register">Find a job</a>
+              <a className="button button-secondary" href="/register">I&apos;m hiring</a>
             </div>
           </div>
         </section>

@@ -35,3 +35,17 @@
 .account-details div { display: flex; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
 .account-details dt { color: var(--muted); }
 .account-details dd { margin: 0; font-weight: 700; text-transform: capitalize; }
+
+.account-dashboard { width: min(100%, 720px); }
+.account-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+.account-topbar .auth-brand { margin: 0; }
+.profile-form { margin-top: 26px; border-top: 1px solid var(--border); padding-top: 24px; }
+.profile-form h2 { margin: 0 0 8px; font-size: 20px; }
+.auth-form textarea { width: 100%; resize: vertical; border: 1px solid var(--border); border-radius: 11px; padding: 12px 13px; color: var(--foreground); background: white; font: inherit; line-height: 1.55; }
+.auth-form textarea:focus { border-color: var(--primary); outline: 3px solid #dce6ff; }
+.organization-status { display: flex; align-items: center; justify-content: space-between; gap: 12px; border: 1px solid var(--border); border-radius: 11px; padding: 12px; background: #f8fafc; color: var(--muted); font-size: 13px; }
+.organization-status strong { color: #9a6700; text-transform: capitalize; }
+@media (max-width: 520px) {
+  .account-topbar { align-items: flex-start; }
+  .account-topbar .button { min-height: 40px; padding-inline: 12px; }
+}
