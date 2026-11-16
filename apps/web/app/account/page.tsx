@@ -26,7 +26,7 @@ export default async function AccountPage() {
   const { data: membership } = !isCandidate
     ? await supabase.from("organization_members")
         .select("organization_id, role")
-        .eq("user_id", claims.sub).limit(1).maybeSingle()
+        .eq("user_id", claimsData.claims.sub).limit(1).maybeSingle()
     : { data: null };
 
   const { data: organization } = membership
