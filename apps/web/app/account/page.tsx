@@ -108,6 +108,7 @@ export default async function AccountPage() {
           </form>
         )}
 
+        {isCandidate ? <p><Link className="button button-secondary" href="/account/applications">My applications</Link> <Link className="button button-secondary" href="/jobs">Browse jobs</Link></p> : <p><Link className="button button-secondary" href="/employer/jobs">Manage vacancies</Link> <Link className="button button-secondary" href="/employer/applications">Review applications</Link></p>}
         <dl className="account-details">
           <div><dt>Account type</dt><dd>{profile.role}</dd></div>
           <div><dt>Preferred language</dt><dd>{profile.preferred_language}</dd></div>
